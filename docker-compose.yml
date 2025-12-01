@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  detress:
+    build: .
+    container_name: detress
+    ports:
+      - "8000:8000"
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    privileged: true
+    environment:
+      - NDR_API_URL=http://127.0.0.1:8000/traffic
+      - NDR_INTERFACE_INDEX=3
+    restart: unless-stopped
