@@ -1,41 +1,54 @@
-# 🛡️ Detress — Lightweight Network Detection & Response (NDR)
+# 🛡️ **Detress — Lightweight Network Detection & Response (NDR)**
 
-<p align="center"> <img src="https://img.shields.io/badge/Status-Active-blue?style=for-the-badge"/> <img src="https://img.shields.io/badge/Detection-Network%20Telemetry-red?style=for-the-badge"/> </p>
+<p align="center">
+  <img src="https://github.com/Feareis/Detress/blob/main/detress-logo.png" width="260"/>
+</p>
 
-Detress is a small but practical Network Detection & Response (NDR) platform designed for security labs, SOC training, and Blue Team experimentation.
-It provides real-time packet metadata capture, a simple analysis pipeline, and a clean dashboard to visualize both network activity and generated alerts.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Type-NDR%20Platform-red?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Telemetry-Network-orange?style=for-the-badge"/>
+</p>
 
-## 📐 Architecture Overview
+Detress is a lightweight **Network Detection & Response (NDR)** platform designed for SOC training, security labs, and Blue Team experimentation.
 
-```scss
+It provides:
+- Real-time packet metadata capture (Scapy)
+- A simple but realistic analysis/rule engine (FastAPI)
+- A minimal dashboard for traffic & alert visibility
+
+---
+
+# 📐 **Architecture Overview**
+
+```text
                 ┌──────────────────────────────────────────────┐
                 │                    Detress                   │
                 └──────────────────────────────────────────────┘
-                                   ▲             ▲
-                                   │             │ Web Dashboard
-                                   │             │
-                              Alert API      ┌─────────────┐
-                                             │ Frontend UI │
-                                             └─────────────┘
+                                   ▲                 ▲
+                                   │                 │ Web Dashboard (Vanilla JS)
+                                   │                 │
+                              Alert API        ┌─────────────┐
+                                               │ Frontend UI │
+                                               └─────────────┘
                                    │
                           ┌────────┴────────┐
-                          │   Backend API   │ (FastAPI)
+                          │   Backend API   │  FastAPI
                           └────────┬────────┘
                                    │
                                    ▼
-                         ┌───────────────────┐
-                         │ Analysis Pipeline │
-                         │  - Simple rules   │
-                         │  - Behavior       │
-                         └───────┬───────────┘
-                                 │
-                                 ▼
-                    ┌───────────────────────────┐
-                    │   Capture Agent (Scapy)   │
-                    │ Extracts packet metadata  │
-                    └───────────────────────────┘
+                         ┌────────────────────┐
+                         │ Analysis Pipeline  │
+                         │  - Rules engine    │
+                         │  - Behavior checks │
+                         └─────────┬──────────┘
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │   Capture Agent (Scapy)    │
+                     │ Extracts packet metadata   │
+                     └────────────────────────────┘
 ```
-
 The backend exposes REST endpoints for ingestion and alert retrieval, the capture module streams network metadata to the API, and the dashboard polls the backend every few seconds to display recent flows and alerts.
 
 ## ✨ Features
@@ -55,7 +68,7 @@ A simple but realistic SOC-style rule engine:
 - Time-window based checks
 - Basic behavioral rules (extensible)
 
-Rules are cleanly separated and easy to extend.
+*Rules are cleanly separated and easy to extend.*
 
 
 ### Alerting
@@ -75,7 +88,7 @@ A minimal web UI to visualize:
 - Backend health status
 - Auto-refresh every 2 seconds
 
-No frameworks.
+*No frameworks.*
 
 
 ## 🚀 Quick Start
@@ -109,7 +122,7 @@ python main.py
 
 It will automatically send events to:
 
-```arduino
+```cpp
 http://127.0.0.1:8000/traffic
 ```
 
@@ -160,7 +173,7 @@ Dashboard	HTML + Vanilla JS
 Deployment	Docker / Compose
 
 | Component | Technology |
-| --- | --- |
+| --- | :---: |
 | `backend` | FastAPI (Python) |
 | `capture` | Agent	Scapy |
 | `Communication` | REST / JSON |
